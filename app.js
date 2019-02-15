@@ -27,7 +27,7 @@ app.use('/graphql',graphqlHTTP({
 }));
 
 app.get('*',(req,res)=>{
-    res.redirect('graphql');
+    res.redirect('/graphql');
 });
 
 //express server listen 
