@@ -11,7 +11,7 @@ app.use(cors());
 
 const dbName = 'quran';
 //Mongoose connection
-mongoose.connect(`mongodb://localhost:27017/${dbName}`,{useNewUrlParser:true});
+mongoose.connect(`mongodb://mongo_quran:27019/${dbName}`,{useNewUrlParser:true});
 //Connection success message
 mongoose.connection.once('open',()=>{
     console.log(`Connected to database ${dbName}`);
@@ -31,4 +31,4 @@ app.get('*',(req,res)=>{
 });
 
 //express server listen 
-app.listen(4000,()=>console.log("Server started"));
+app.listen(3002,()=>console.log("Server started"));

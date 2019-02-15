@@ -1,0 +1,18 @@
+version: '3'
+services:
+  app:
+    container_name: docker-node-quran
+    restart: always
+    build: .
+    ports:
+      - "3002:3002"
+    links:
+      - mongo
+  mongo:
+    container_name: mongo_quran
+    image: mongo
+    command: mongod --port 27019
+    ports:
+      - "27019:27019"
+
+  
