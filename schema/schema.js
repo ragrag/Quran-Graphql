@@ -137,7 +137,28 @@ const RootQuery = new GraphQLObjectType({
                 const ayats = await Ayat.find(args).sort( { number: 1 });
                 return ayats;
               },
-        }
+        },
+        surat:{
+            type: new GraphQLList (SuratType),
+            args:{
+                _id:{type:GraphQLInt},
+                name:{type:GraphQLString},
+                englishname:{type:GraphQLString},
+                englishtranslation:{type:GraphQLString},
+                revealationCity:{type:GraphQLString},
+            },
+            resolve:async function(parent,args) {
+                const surats = await Surat.find(args);
+                return surats;
+              },
+        },
+        surats:{
+            type: new GraphQLList (SuratType),
+            resolve:async function(parent,args) {
+                const surats = await Surat.find();
+                return surats;
+              },
+        },
 
 
 
