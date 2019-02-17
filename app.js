@@ -6,29 +6,28 @@ const cors = require('cors');
 
 const app = express();
 
-//Allowing CORS cross origin requests
+// Allowing CORS cross origin requests
+//no line
 app.use(cors());
 
 const dbName = 'quran';
 //Mongoose connection
-mongoose.connect(`mongodb://mongo_quran:27019/${dbName}`,{useNewUrlParser:true});
+mongoose.connect(`mongodb://mongo_quran:27019/${dbName}`, { useNewUrlParser: true });
 //Connection success message
-mongoose.connection.once('open',()=>{
-    console.log(`Connected to database ${dbName}`);
+mongoose.connection.once('open', () => {
+	console.log(`Connected to database ${dbName}`);
 });
 
 
-
-
-//Graphql endpoint with graphqlHTTP middleware
-app.use('/graphql',graphqlHTTP({
-    schema:schema,
-    graphiql:true
+//  Graphql endpoint with graphqlHTTP middleware
+app.use('/graphql', graphqlHTTP({
+	schema: schema,
+	graphiql: true,
 }));
 
-app.get('*',(req,res)=>{
-    res.redirect('/graphql');
+app.get('*', (req, res) => {
+	res.redirect('/graphql');
 });
 
 //express server listen 
-app.listen(3002,()=>console.log("Server started"));
+app.listen(3002, () => console.log('Server started'));
